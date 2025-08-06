@@ -49,5 +49,84 @@ let kilometros = parseFloat(prompt("¿Cuántos kilómetros recorriste con el?"))
 let consumo = litros / kilometros;
 alert("Consumo total por kilómetro de tu vehiculo es: " + consumo.toFixed(2) + " l/km");
 
+// OBJETOS:
 
+// 6. Clase Ficha
+class Ficha {
+    constructor(nombre) {
+        this.nombre = nombre;
+        this.sesiones = [];
+        this.numsesiones = 0;
+    }
 
+    anotar(kms) {
+        this.sesiones.push(kms);
+        this.numsesiones++;
+    }
+
+    media() {
+        const total = this.sesiones.reduce((a, b) => a + b, 0);
+        return total / this.numsesiones;
+    }
+}
+
+// 7. Clase Factura
+class Factura {
+    constructor(idCliente, total) {
+        this.idCliente = idCliente;
+        this.total = total;
+        this.estado = "pendiente";
+    }
+
+    cobrar() {
+        this.estado = "pagada";
+    }
+
+    imprimir() {
+        const cliente = clientes[this.idCliente];
+        console.log(`Factura:
+        Cliente: ${cliente.nombre}
+        Email: ${cliente.email}
+        Teléfono: ${cliente.telefono}
+        Total: $${this.total}
+        Estado: ${this.estado}`);
+    }
+}
+
+const clientes = [
+    { nombre: "Karina", email: "bravokarina51@gmail.com", telefono: "3875222620" },
+    { nombre: "Alejandra", email: "alejandra@gmail.com", telefono: "3875222621" },
+    { nombre: "Bravo", email: "bravo@gmail.com", telefono: "3875222622" }
+];
+
+const factura1 = new Factura(0, 5000);
+factura1.cobrar();
+factura1.imprimir();
+
+// 8. Clases Proveedor y Articulo
+class Proveedor {
+    constructor(nombre, email, telefono) {
+        this.nombre = nombre;
+        this.email = email;
+        this.telefono = telefono;
+    }
+}
+
+class Articulo {
+    constructor(nombre, precio, proveedor) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.proveedor = proveedor;
+    }
+
+    telefono() {
+        return {
+            nombre: this.proveedor.nombre,
+            telefono: this.proveedor.telefono
+        };
+    }
+}
+
+const proveedor1 = new Proveedor("Preventista Bravo", "bravo@proveedor.com", "3875222623");
+const articulo1 = new Articulo("Teclado", 2500, proveedor1);
+console.log(articulo1.telefono());
