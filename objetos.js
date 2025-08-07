@@ -128,5 +128,5 @@ class Articulo {
 }
 
 const proveedor1 = new Proveedor("Preventista Bravo", "bravo@proveedor.com", "3875222623");
-const articulo1 = new Articulo("Teclado", 2500, proveedor1);
+const articulo1 = new Articulo("Parlante", 15000, proveedor1);
 console.log(articulo1.telefono());
